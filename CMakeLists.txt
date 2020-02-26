@@ -48,6 +48,9 @@ target_include_directories(tests
 # TODO: change template word to project name and delete this comment
 target_link_libraries(tests GTest::main template)
 
+target_link_libraries(template Boost::log)
+target_link_libraries(logs INTERFACE Boost::log Boost::thread)
+target_link_libraries(header INTERFACE Boost::log Boost::thread)
 enable_testing()
 add_test(NAME unit_tests COMMAND tests) 
 
