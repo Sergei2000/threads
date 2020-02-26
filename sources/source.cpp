@@ -15,7 +15,7 @@ std::string generator() {
     return final_str;
 }
 
-void sha(int potok_num) {
+void sha() {
     std::string tmp;
     while (!status) {
         tmp = generator();
@@ -47,10 +47,10 @@ void logg() {
             boost::log::keywords::format =
             "[%ThreadID%][%TimeStamp%][%Severity%]: %Message%");
     boost::log::add_common_attributes();
-    for (int i = 0; i < std::thread::hardware_concurrency(); ++i) {
-        potoki.push_back(std::thread(sha, i));
+    for (unsigned int i = 0; i < std::thread::hardware_concurrency(); ++i) {
+        potoki.push_back(std::thread(sha));
     }
-    for (int i = 0; i < std::thread::hardware_concurrency(); ++i) {
+    for (unsigned int i = 0; i < std::thread::hardware_concurrency(); ++i) {
         potoki[i].join();
     }
 }
