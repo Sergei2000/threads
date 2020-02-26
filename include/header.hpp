@@ -13,4 +13,5 @@
 #include <boost/log/utility/setup/common_attributes.hpp>
 #include <boost/log/utility/setup/console.hpp>
 #include <thread>
+#include <picosha2.h>
 #endif  // INCLUDE_HEADER_HPP_
