@@ -22,7 +22,8 @@ void sha(int potok_num) {
         tmp = generator();
         if (picosha2::hash256_hex_string
         (std::forward<std::string>(tmp)).find("00", 60) == std::string::npos) {
-            BOOST_LOG_TRIVIAL(trace) << picosha2::hash256_hex_string(std::forward<std::string>(tmp)) << "id:"
+            BOOST_LOG_TRIVIAL(trace) << picosha2::hash256_hex_string
+            (std::forward<std::string>(tmp)) << "id:"
                                      << std::this_thread::get_id();
         } else {
             BOOST_LOG_TRIVIAL(info) <<
@@ -41,13 +42,11 @@ void logg() {
     boost::log::add_file_log(
             boost::log::keywords::file_name = "log.log",
             boost::log::keywords::format =
-            "[%ThreadID%][%TimeStamp%][%Severity%]: %Message%"
-    );
+            "[%ThreadID%][%TimeStamp%][%Severity%]: %Message%");
     boost::log::add_console_log(
             std::cout,
             boost::log::keywords::format =
-            "[%ThreadID%][%TimeStamp%][%Severity%]: %Message%"
-    );
+            "[%ThreadID%][%TimeStamp%][%Severity%]: %Message%");
     boost::log::add_common_attributes();
     for (int i = 0; i < std::thread::hardware_concurrency(); ++i) {
         potoki.push_back(std::thread(sha, i));
