@@ -1,6 +1,7 @@
 // Copyright 2018 Your Name <your_email>
 
 #include <header.hpp>
+#include <picosha2.h>
 
 static std::vector<std::thread> potoki;
 static bool status = false;
