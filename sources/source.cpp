@@ -6,9 +6,10 @@ static std::vector<std::thread> potoki;
 static bool status = false;
 
 std::string generator() {
-    std::string const default_chars = "abcdefghijklmnaoqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.?,//;";
+    std::string const default_chars =
+    "abcdefghijklmnaoqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
     std::string final_str = "";
-    for (unsigned long i = 0; i < std::rand(); ++i) {
+    for (int i = 0; i < std::rand(); ++i) {
         final_str.push_back(default_chars[std::rand() % default_chars.size()]);
     }
 
@@ -19,11 +20,13 @@ void sha(int potok_num) {
     std::string tmp;
     while (!status) {
         tmp = generator();
-        if (picosha2::hash256_hex_string(std::forward<std::string>(tmp)).find("00", 60) == std::string::npos) {
+        if (picosha2::hash256_hex_string
+        (std::forward<std::string>(tmp)).find("00", 60) == std::string::npos) {
             BOOST_LOG_TRIVIAL(trace) << picosha2::hash256_hex_string(std::forward<std::string>(tmp)) << "id:"
                                      << std::this_thread::get_id();
         } else {
-            BOOST_LOG_TRIVIAL(info) << picosha2::hash256_hex_string(std::forward<std::string>(tmp))
+            BOOST_LOG_TRIVIAL(info) <<
+            picosha2::hash256_hex_string(std::forward<std::string>(tmp))
             << "id:"
             << std::this_thread::get_id();
             status = true;
@@ -37,11 +40,13 @@ void logg() {
     ::trivial::severity_level, char>("Severity");
     boost::log::add_file_log(
             boost::log::keywords::file_name = "log.log",
-            boost::log::keywords::format = "[%ThreadID%][%TimeStamp%][%Severity%]: %Message%"
+            boost::log::keywords::format =
+            "[%ThreadID%][%TimeStamp%][%Severity%]: %Message%"
     );
     boost::log::add_console_log(
             std::cout,
-            boost::log::keywords::format = "[%ThreadID%][%TimeStamp%][%Severity%]: %Message%"
+            boost::log::keywords::format =
+            "[%ThreadID%][%TimeStamp%][%Severity%]: %Message%"
     );
     boost::log::add_common_attributes();
     for (int i = 0; i < std::thread::hardware_concurrency(); ++i) {
