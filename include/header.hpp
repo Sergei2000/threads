@@ -2,7 +2,14 @@
 
 #ifndef INCLUDE_HEADER_HPP_
 #define INCLUDE_HEADER_HPP_
+#include <cstdlib>
 #include <iostream>
+#include <string>
+#include <ctime>
+#include <picosha2.h>
+#include <future>
+#include <thread>
+#include <vector>
 #include <boost/log/trivial.hpp>
 #include <boost/log/core.hpp>
 #include <boost/log/expressions.hpp>
@@ -12,6 +19,4 @@
 #include <boost/log/sources/record_ostream.hpp>
 #include <boost/log/utility/setup/common_attributes.hpp>
 #include <boost/log/utility/setup/console.hpp>
-#include <thread>
-#include <picosha2.h>
 #endif  // INCLUDE_HEADER_HPP_
