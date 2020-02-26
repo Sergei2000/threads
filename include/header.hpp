@@ -6,7 +6,7 @@
 #include <iostream>
 #include <string>
 #include <ctime>
-#include <picosha2.h>
+#include "/home/travis/build/Sergei2000/threads/include/picosha2.h"
 #include <future>
 #include <thread>
 #include <vector>
