@@ -47,6 +47,18 @@ target_include_directories(tests
 )
 # TODO: change template word to project name and delete this comment
 target_link_libraries(tests GTest::main template)
+target_include_directories(
+        header
+        INTERFACE $<BUILD_INTERFACE:${${PROJECT_NAME}_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+target_include_directories(
+        picosha2
+        INTERFACE $<BUILD_INTERFACE:${${PROJECT_NAME}_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+target_include_directories(
+        logs
+        INTERFACE $<BUILD_INTERFACE:${${PROJECT_NAME}_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
 target_link_libraries(template Boost::log)
 target_link_libraries(logs INTERFACE Boost::log Boost::thread)
