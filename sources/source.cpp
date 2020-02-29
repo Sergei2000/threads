@@ -42,10 +42,10 @@ void sha() {
 }
 
 void start() {
-    for (int i = 0; i < std::thread::hardware_concurrency(); ++i) {
+    for (unsigned int i = 0; i < std::thread::hardware_concurrency(); ++i) {
         threads.push_back(std::thread(sha));
     }
-    for (int i = 0; i < std::thread::hardware_concurrency(); ++i) {
+    for (unsigned int i = 0; i < std::thread::hardware_concurrency(); ++i) {
         threads[i].join();
     }
 }
